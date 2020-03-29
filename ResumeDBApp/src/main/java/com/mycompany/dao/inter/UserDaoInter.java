@@ -18,6 +18,7 @@ public interface UserDaoInter {
     public User getById(int u);
 
     public boolean upDateUser(User u);
+    public boolean addUser(User u);
 
     public boolean removeUser(int id);
 

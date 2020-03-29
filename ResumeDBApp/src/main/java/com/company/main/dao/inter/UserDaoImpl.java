@@ -51,18 +51,18 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
     @Override
     public boolean upDateUser(User u) {
         try (Connection c = connect()) {
-            PreparedStatement stmt=c.prepareStatement("update user set name=?,surname=?,phone=?,email=? where id=?");
-           stmt.setString(1, u.getName());
-           stmt.setString(2, u.getSurname());
-           stmt.setString(3, u.getPhone());
-           stmt.setString(4, u.getEmail());
-           stmt.setInt(5, u.getId());
-           return stmt.execute();
+            PreparedStatement stmt = c.prepareStatement("update user set name=?,surname=?,phone=?,email=? where id=?");
+            stmt.setString(1, u.getName());
+            stmt.setString(2, u.getSurname());
+            stmt.setString(3, u.getPhone());
+            stmt.setString(4, u.getEmail());
+            stmt.setInt(5, u.getId());
+            return stmt.execute();
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
         }
-        
+
     }
 
     @Override
@@ -70,21 +70,21 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
         try (Connection c = connect()) {
 
             Statement stmt = c.createStatement();
-           return stmt.execute("delete from user where id= "+id);
+            return stmt.execute("delete from user where id= " + id);
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
         }
-        
+
     }
 
     @Override
     public User getById(int userId) {
-       User result = null;
+        User result = null;
         try (Connection c = connect()) {//mutleq try with resource etmeliyikki sebeke baglansin connect baglansin
 
             Statement stmt = c.createStatement();
-            stmt.execute("select * from user where id="+userId);
+            stmt.execute("select * from user where id=" + userId);
             ResultSet rs = stmt.getResultSet();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -92,13 +92,30 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
                 String surname = rs.getString("surname");
                 String phone = rs.getString("phone");
                 String email = rs.getString("email");
-                result=new User(id, name, surname, phone, email);
+                result = new User(id, name, surname, phone, email);
 
             }
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return result;  }
+        return result;
+    }
+
+    @Override
+    public boolean addUser(User u) {
+        try (Connection c = connect()) {
+            PreparedStatement stmt = c.prepareStatement("insert into user(name,surname,email,phone) values(?,?,?,?)");
+            stmt.setString(1, u.getName());
+            stmt.setString(2, u.getSurname());
+            stmt.setString(3, u.getPhone());
+            stmt.setString(4, u.getEmail());
+
+            return stmt.execute();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 
 }
