@@ -5,10 +5,7 @@
  */
 package com.mycompany.main;
 
-import com.company.bean.User;
-import com.company.main.dao.inter.UserDaoImpl;
-import com.mycompany.dao.inter.UserDaoInter;
-import java.util.List;
+import com.mycompany.dao.inter.CountryDaoInter;
 
 /**
  *
@@ -17,10 +14,10 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        UserDaoInter userdao = Contex.instanceUserDao();
-        User u = new User(0, "Sarkhan", "Rasullu", "+994556895", "sarkhan@gmail.com");
+        CountryDaoInter skildao = Contex.instanceCountryDao();
 
-        userdao.addUser(u);
+//       SkillDaoInter s=new SkillDaoImple();
+        System.out.println(skildao.getAll());
 
     }
 }

@@ -5,7 +5,8 @@
  */
 package com.mycompany.dao.inter;
 
-import com.company.bean.User;
+import com.company.entity.User;
+import com.company.entity.UserSkill;
 import java.util.List;
 
 /**
@@ -15,11 +16,15 @@ import java.util.List;
 public interface UserDaoInter {
 
     public List<User> getAll();
+
     public User getById(int u);
 
     public boolean upDateUser(User u);
+
     public boolean addUser(User u);
 
     public boolean removeUser(int id);
+
+//    public List<UserSkill> getAllSkillByUserId(int userId); silirik niye cunki yeni interfacemizi var
 
 }
