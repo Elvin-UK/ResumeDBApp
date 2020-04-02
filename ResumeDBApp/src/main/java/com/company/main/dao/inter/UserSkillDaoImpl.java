@@ -62,5 +62,17 @@ public class UserSkillDaoImpl extends AbstractDao implements UserSkillDaoInter {
         String skillname = rs.getString("skill_name");
         return new UserSkill(null, new User(userid), new Skill(skillid, skillname), power);
     }
+@Override
+    public boolean removeskill(int id) {
+        try (Connection c = connect()) {
 
+            PreparedStatement stmt = c.prepareStatement("delete from user_skill where id= ?" + id);
+            stmt.setInt(1, id);
+            System.out.println("id:" + String.valueOf(id));
+            return stmt.execute();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }

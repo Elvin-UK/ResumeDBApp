@@ -22,9 +22,10 @@ import java.util.List;
 public class CountryDaoImple extends AbstractDao implements CountryDaoInter {
 
     private Country getCountry(ResultSet rs) throws Exception {
+        int id=rs.getInt("id");
         String name = rs.getString("name");
         String nationality = rs.getString("nationality");
-        Country emp = new Country(0, name, nationality);
+        Country emp = new Country(id, name, nationality);
         return emp;
     }
 
@@ -37,8 +38,10 @@ public class CountryDaoImple extends AbstractDao implements CountryDaoInter {
 
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
+           
             while (rs.next()) {
                 Country country = getCountry(rs);
+                
                 result.add(country);
 
             }

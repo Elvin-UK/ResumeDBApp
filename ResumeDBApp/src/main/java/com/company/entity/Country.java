@@ -5,6 +5,8 @@
  */
 package com.company.entity;
 
+import java.util.Objects;
+
 /**
  *
  * @author User
@@ -49,7 +51,40 @@ public class Country {
 
     @Override
     public String toString() {
-        return "Country{" + "id=" + id + ", name=" + name + ", nationality=" + nationality + '}';
+        return name + "," + nationality  ;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + this.id;
+        hash = 37 * hash + Objects.hashCode(this.name);
+        hash = 37 * hash + Objects.hashCode(this.nationality);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Country other = (Country) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.nationality, other.nationality)) {
+            return false;
+        }
+        return true;
     }
 
  

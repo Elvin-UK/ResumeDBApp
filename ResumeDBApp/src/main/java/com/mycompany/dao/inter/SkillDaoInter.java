@@ -13,5 +13,8 @@ import java.util.List;
  * @author User
  */
 public interface SkillDaoInter {
-       public List<Skill> getAll();
+
+    public List<Skill> getAll();
+ public boolean insertSkill(Skill skl);
+//    public boolean removeskill(int id);
 }

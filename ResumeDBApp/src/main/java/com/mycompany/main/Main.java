@@ -5,7 +5,8 @@
  */
 package com.mycompany.main;
 
-import com.mycompany.dao.inter.CountryDaoInter;
+import com.company.entity.User;
+import com.mycompany.dao.inter.UserDaoInter;
 
 /**
  *
@@ -14,9 +15,12 @@ import com.mycompany.dao.inter.CountryDaoInter;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        CountryDaoInter skildao = Contex.instanceCountryDao();
+    UserDaoInter skildao = Contex.instanceUserDao();
 
 //       SkillDaoInter s=new SkillDaoImple();
+
+
+
         System.out.println(skildao.getAll());
 
     }
